@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert; // Imported TestNG Assert
 
 import io.cucumber.java.After;
@@ -19,6 +20,13 @@ public class LoginSteps {
 
 	@Before
 	public void setup() {
+		// Inside your WebDriver setup method:
+		ChromeOptions options = new ChromeOptions();
+
+		// Essential CI/CD Arguments
+		options.addArguments("--headless=new"); // Runs Chrome without a UI
+		options.addArguments("--no-sandbox"); // Required when running as root in CI/Docker
+		options.addArguments("--disable-dev-shm-usage"); // Prevents crashes due to limited sh
 		driver = new ChromeDriver();
 	}
 
