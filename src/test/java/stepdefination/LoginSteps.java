@@ -20,14 +20,13 @@ public class LoginSteps {
 
 	@Before
 	public void setup() {
-		// Inside your WebDriver setup method:
 		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless=new");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
 
-		// Essential CI/CD Arguments
-		options.addArguments("--headless=new"); // Runs Chrome without a UI
-		options.addArguments("--no-sandbox"); // Required when running as root in CI/Docker
-		options.addArguments("--disable-dev-shm-usage"); // Prevents crashes due to limited sh
-		driver = new ChromeDriver();
+		// Pass the options into the ChromeDriver
+		driver = new ChromeDriver(options);
 	}
 
 	@Given("the user is on the login page")
