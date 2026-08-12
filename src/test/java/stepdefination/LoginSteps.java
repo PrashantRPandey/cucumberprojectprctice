@@ -41,6 +41,24 @@ public class LoginSteps {
 		loginBtn.click();
 	}
 
+	@When("the user enters invalid username and password")
+	public void userEntersInvalidCredentials() {
+		WebElement userName = this.driver.findElement(By.id("user-name"));
+		userName.sendKeys("invalid_user");
+
+		WebElement passWord = this.driver.findElement(By.id("password"));
+		passWord.sendKeys("wrong_password");
+
+		WebElement loginBtn = this.driver.findElement(By.id("login-button"));
+		loginBtn.click();
+	}
+
+	@Then("an error message should be displayed")
+	public void errorMessageDisplayed() {
+		WebElement errorMsg = this.driver.findElement(By.cssSelector(".error-message-container h3"));
+		Assert.assertTrue(errorMsg.isDisplayed(), "Error message was not displayed!");
+	}
+
 	@Then("the user should be redirected to the homepage")
 	public void userRedirectedToHomepage() {
 		String currentUrl = driver.getCurrentUrl();
