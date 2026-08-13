@@ -1,4 +1,4 @@
-package stepdefination; // Corrected spelling to match the runner
+package stepdefination;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
